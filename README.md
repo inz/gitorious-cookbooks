@@ -18,7 +18,7 @@ For installing Gitorious in latest Debian stable using Opscode Chef for a comple
 First review the settings under /root/chef-solo/node.json. TODO: currently GMail is not supported as smtp relay server. Then procede with:
 
     cd /root/chef-solo
-    git clone git://github.com/rosenfeld/gitorious-cookbooks.git cookbooks
+    git clone git://github.com/inz/gitorious-cookbooks.git cookbooks
 
     chef-solo
 
