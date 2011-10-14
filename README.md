@@ -1,33 +1,18 @@
-# Install procedures
+# Usage
 
-For installing Gitorious in latest Debian stable using Opscode Chef for a completely automated process, follow these instructions:
+To install [Gitorious](http://gitorious.org/gitorious) on an Ubuntu server:
 
-    apt-get update
-    echo "gem: --no-rdoc --no-ri" > /etc/gemrc
-    apt-get install -y ruby ruby-dev libruby build-essential ssl-cert git
-    cd /tmp
-    wget http://production.cf.rubygems.org/rubygems/rubygems-1.4.2.tgz
-    tar zxf rubygems-1.4.2.tgz
-    ruby rubygems-1.4.2/setup.rb --no-format-executable
-    gem install chef
+    bash <(wget -qO - https://raw.github.com/gist/1287257/install_gitorious.sh)
 
-    mkdir /etc/chef /root/chef-solo
-    wget -O /etc/chef/solo.rb https://gist.github.com/raw/847256/chef-gitorious-etc-solo.rb
-    wget -O /root/chef-solo/node.json https://gist.github.com/raw/847256/chef-gitorious-node-debian.json
+The script has been tested on pristine copies of the following Ubuntu versions:
 
-First review the settings under /root/chef-solo/node.json. TODO: currently GMail is not supported as smtp relay server. Then procede with:
+  * Ubuntu 10.04.3 LTS
 
-    cd /root/chef-solo
-    git clone git://github.com/inz/gitorious-cookbooks.git cookbooks
+Support for additional releases may be added in the future. If you find the script working for other releases, please let me know and I'll add them to the list.
 
-    chef-solo
+After getting all prerequisites for the chef-solo run, the script will launch the node configuration file (https://gist.github.com/raw/847256/chef-gitorious-node-debian.json) your default editor. Adjust the node settings to your environment, save the file and close the editor for the installation to continue.
 
-# Troubleshoot
 
-If you have any problems, please fill the issue [here](https://github.com/rosenfeld/gitorious-cookbooks/issues).
+# Troubleshooting
 
-If for some reason apache is not listening in port 443 after install, please restart apache manually:
-
-    invoke-rc.d apache2 restart
-
-I have no idea why this happened to me once...
+If you have any problems, please report them using the [issue tracker](https://github.com/inz/gitorious-cookbooks/issues).
