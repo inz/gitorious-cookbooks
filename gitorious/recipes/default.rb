@@ -85,7 +85,7 @@ apache_site "gitorious-ssl"
 
 gem_package 'bundler'
 
-execute "bundle install --deployment --without development test" do
+execute "bundle pack && bundle install --without development test --path vendor/cache" do
   cwd         deploy_path
   user        "root"
   group       "root"
